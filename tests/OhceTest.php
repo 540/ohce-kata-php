@@ -50,4 +50,28 @@ class OhceTest extends TestCase
 
         $this->assertTrue($result);
     }
+
+    /**
+     * @test
+     */
+    public function returnsReverseWordIfIsNotPalindrome()
+    {
+        $ohce = new Ohce();
+
+        $result = $ohce->inputHandler('word');
+
+        $this->assertEquals('drow', $result);
+    }
+
+    /**
+     * @test
+     */
+    public function returnsSpecialAnswerIfIsPalindrome()
+    {
+        $ohce = new Ohce();
+
+        $result = $ohce->inputHandler('somos');
+
+        $this->assertEquals('somos ¡Bonita palabra!', $result);
+    }
 }
