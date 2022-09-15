@@ -7,12 +7,16 @@ use PHPUnit\Framework\TestCase;
 
 class OhceTest extends TestCase
 {
+    private Ohce $ohce;
+
     /**
      * @setUp
      */
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->ohce = new Ohce('Meetup');
     }
 
     /**
@@ -20,9 +24,7 @@ class OhceTest extends TestCase
      */
     public function returnsReverseWordIfIsNotPalindrome()
     {
-        $ohce = new Ohce('Meetup');
-
-        $result = $ohce->inputHandler('word');
+        $result = $this->ohce->inputHandler('word');
 
         $this->assertEquals('drow', $result);
     }
@@ -32,9 +34,7 @@ class OhceTest extends TestCase
      */
     public function returnsSpecialAnswerIfIsPalindrome()
     {
-        $ohce = new Ohce('Meetup');
-
-        $result = $ohce->inputHandler('somos');
+        $result = $this->ohce->inputHandler('somos');
 
         $this->assertEquals('somos ¡Bonita palabra!', $result);
     }
@@ -44,9 +44,7 @@ class OhceTest extends TestCase
      */
     public function returnsByeIfWordIsExitWord()
     {
-        $ohce = new Ohce('Meetup');
-
-        $result = $ohce->inputHandler('Stop!');
+        $result = $this->ohce->inputHandler('Stop!');
 
         $this->assertEquals('Adios Meetup', $result);
     }

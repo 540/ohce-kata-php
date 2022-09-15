@@ -4,6 +4,7 @@ namespace Deg540\PHPTestingBoilerplate;
 
 class Ohce
 {
+    private const EXIT_WORD = 'Stop!';
     private string $username;
 
     public function __construct(string $username)
@@ -13,7 +14,7 @@ class Ohce
 
     public function inputHandler(string $word): string
     {
-        if ($word === 'Stop!') {
+        if ($this->isExitWord($word)) {
             return 'Adios ' . $this->username;
         }
         if ($this->isPalindrome($word)) {
@@ -31,5 +32,10 @@ class Ohce
     private function isPalindrome(string $word): bool
     {
         return $word === $this->reverse($word);
+    }
+
+    private function isExitWord(string $word): bool
+    {
+        return $word === self::EXIT_WORD;
     }
 }
