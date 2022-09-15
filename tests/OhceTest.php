@@ -18,42 +18,6 @@ class OhceTest extends TestCase
     /**
      * @test
      */
-    public function reversesAWord()
-    {
-        $ohce = new Ohce();
-
-        $result = $ohce->reverse('word');
-
-        $this->assertEquals('drow', $result);
-    }
-
-    /**
-     * @test
-     */
-    public function checksIsNotPalindrome()
-    {
-        $ohce = new Ohce();
-
-        $result = $ohce->isPalindrome('hola');
-
-        $this->assertFalse($result);
-    }
-
-    /**
-     * @test
-     */
-    public function checksIsPalindrome()
-    {
-        $ohce = new Ohce();
-
-        $result = $ohce->isPalindrome('somos');
-
-        $this->assertTrue($result);
-    }
-
-    /**
-     * @test
-     */
     public function returnsReverseWordIfIsNotPalindrome()
     {
         $ohce = new Ohce();
