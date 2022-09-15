@@ -18,10 +18,10 @@ class Ohce
     {
         $this->username = $username;
 
-        if ($this->clock->getHour() >= 6 && $this->clock->getHour() < 12) {
+        if ($this->clock->isMorning()) {
             return '¡Buenos días ' . $username . '!';
         }
-        if ($this->clock->getHour() >= 12 && $this->clock->getHour() < 20) {
+        if ($this->clock->isAfternoon()) {
             return '¡Buenas tardes ' . $username . '!';
         }
 

@@ -4,7 +4,7 @@ namespace Deg540\PHPTestingBoilerplate\Test;
 
 use Deg540\PHPTestingBoilerplate\Clock;
 
-class FakeClock implements Clock
+class FakeClock extends Clock
 {
     private int $hour;
 
@@ -13,7 +13,7 @@ class FakeClock implements Clock
         $this->hour = $hour;
     }
 
-    public function getHour(): int
+    protected function getHour(): int
     {
         return $this->hour;
     }

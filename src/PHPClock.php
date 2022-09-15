@@ -2,7 +2,7 @@
 
 namespace Deg540\PHPTestingBoilerplate;
 
-class PHPClock implements Clock
+class PHPClock extends Clock
 {
     public function getHour(): int
     {

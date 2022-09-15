@@ -48,10 +48,10 @@ class OhceTest extends TestCase
      */
     public function returnsByeIfWordIsExitWord()
     {
-        $this->clock->shouldReceive('getHour')
+        $this->clock->shouldReceive('isMorning')
             ->withNoArgs()
             ->once()
-            ->andReturn(10);
+            ->andReturn(true);
 
         $this->ohce->greet('Meetup');
         $result = $this->ohce->inputHandler('Stop!');
@@ -64,10 +64,10 @@ class OhceTest extends TestCase
      */
     public function greetsAUserInTheMorning()
     {
-        $this->clock->shouldReceive('getHour')
+        $this->clock->shouldReceive('isMorning')
             ->withNoArgs()
             ->once()
-            ->andReturn(10);
+            ->andReturn(true);
         
         $result = $this->ohce->greet('Meetup');
 
@@ -79,10 +79,14 @@ class OhceTest extends TestCase
      */
     public function greetsAUserInTheAfternoon()
     {
-        $this->clock->shouldReceive('getHour')
+        $this->clock->shouldReceive('isMorning')
             ->withNoArgs()
             ->once()
-            ->andReturn(17);
+            ->andReturn(false);
+        $this->clock->shouldReceive('isAfternoon')
+            ->withNoArgs()
+            ->once()
+            ->andReturn(true);
         
         $result = $this->ohce->greet('Meetup');
 
@@ -94,10 +98,14 @@ class OhceTest extends TestCase
      */
     public function greetsAUserAtNight()
     {
-        $this->clock->shouldReceive('getHour')
+        $this->clock->shouldReceive('isMorning')
             ->withNoArgs()
             ->once()
-            ->andReturn(3);
+            ->andReturn(false);
+        $this->clock->shouldReceive('isAfternoon')
+            ->withNoArgs()
+            ->once()
+            ->andReturn(false);
         
         $result = $this->ohce->greet('Meetup');
 
