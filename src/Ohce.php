@@ -8,4 +8,9 @@ class Ohce
     {
         return strrev($word);
     }
+
+    public function isPalindrome(string $word): bool
+    {
+        return $word === $this->reverse($word);
+    }
 }

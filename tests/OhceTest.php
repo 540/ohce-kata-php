@@ -26,4 +26,28 @@ class OhceTest extends TestCase
 
         $this->assertEquals('drow', $result);
     }
+
+    /**
+     * @test
+     */
+    public function checksIsNotPalindromeIfWordIsHola()
+    {
+        $ohce = new Ohce();
+
+        $result = $ohce->isPalindrome('hola');
+
+        $this->assertFalse($result);
+    }
+
+    /**
+     * @test
+     */
+    public function checksIsPalindromeIfWordIsSomos()
+    {
+        $ohce = new Ohce();
+
+        $result = $ohce->isPalindrome('somos');
+
+        $this->assertTrue($result);
+    }
 }
