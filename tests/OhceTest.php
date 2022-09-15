@@ -10,15 +10,25 @@ use PHPUnit\Framework\TestCase;
 
 class OhceTest extends TestCase
 {
+    private Clock $clock;
+    private Ohce $ohce;
+
+    /**
+     * @setUp
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+        
+        $this->clock = Mockery::mock(Clock::class);
+        $this->ohce = new Ohce($this->clock);
+    }
     /**
      * @test
      */
     public function returnsReverseWordIfIsNotPalindrome()
     {
-        $clock = new DummyClock();
-        $ohce = new Ohce($clock);
-        
-        $result = $ohce->inputHandler('word');
+        $result = $this->ohce->inputHandler('word');
 
         $this->assertEquals('drow', $result);
     }
@@ -28,10 +38,7 @@ class OhceTest extends TestCase
      */
     public function returnsSpecialAnswerIfIsPalindrome()
     {
-        $clock = new DummyClock();
-        $ohce = new Ohce($clock);
-        
-        $result = $ohce->inputHandler('somos');
+        $result = $this->ohce->inputHandler('somos');
 
         $this->assertEquals('somos ¡Bonita palabra!', $result);
     }
@@ -41,11 +48,13 @@ class OhceTest extends TestCase
      */
     public function returnsByeIfWordIsExitWord()
     {
-        $clock = new DummyClock();
-        $ohce = new Ohce($clock);
+        $this->clock->shouldReceive('getHour')
+            ->withNoArgs()
+            ->once()
+            ->andReturn(10);
 
-        $ohce->greet('Meetup');
-        $result = $ohce->inputHandler('Stop!');
+        $this->ohce->greet('Meetup');
+        $result = $this->ohce->inputHandler('Stop!');
 
         $this->assertEquals('Adios Meetup', $result);
     }
@@ -55,10 +64,12 @@ class OhceTest extends TestCase
      */
     public function greetsAUserInTheMorning()
     {
-        $clock = new FakeClock(10);
-        $ohce = new Ohce($clock);
+        $this->clock->shouldReceive('getHour')
+            ->withNoArgs()
+            ->once()
+            ->andReturn(10);
         
-        $result = $ohce->greet('Meetup');
+        $result = $this->ohce->greet('Meetup');
 
         $this->assertEquals('¡Buenos días Meetup!', $result);
     }
@@ -68,10 +79,12 @@ class OhceTest extends TestCase
      */
     public function greetsAUserInTheAfternoon()
     {
-        $clock = new FakeClock(17);
-        $ohce = new Ohce($clock);
+        $this->clock->shouldReceive('getHour')
+            ->withNoArgs()
+            ->once()
+            ->andReturn(17);
         
-        $result = $ohce->greet('Meetup');
+        $result = $this->ohce->greet('Meetup');
 
         $this->assertEquals('¡Buenas tardes Meetup!', $result);
     }
@@ -81,10 +94,12 @@ class OhceTest extends TestCase
      */
     public function greetsAUserAtNight()
     {
-        $clock = new FakeClock(3);
-        $ohce = new Ohce($clock);
+        $this->clock->shouldReceive('getHour')
+            ->withNoArgs()
+            ->once()
+            ->andReturn(3);
         
-        $result = $ohce->greet('Meetup');
+        $result = $this->ohce->greet('Meetup');
 
         $this->assertEquals('¡Buenas noches Meetup!', $result);
     }
