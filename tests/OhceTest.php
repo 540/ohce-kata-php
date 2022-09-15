@@ -18,24 +18,12 @@ class OhceTest extends TestCase
     /**
      * @test
      */
-    public function reversesHola()
+    public function reversesAWord()
     {
         $ohce = new Ohce();
 
-        $result = $ohce->reverse('hola');
+        $result = $ohce->reverse('word');
 
-        $this->assertEquals('aloh', $result);
-    }
-
-    /**
-     * @test
-     */
-    public function reversesAdios()
-    {
-        $ohce = new Ohce();
-
-        $result = $ohce->reverse('adios');
-
-        $this->assertEquals('soida', $result);
+        $this->assertEquals('drow', $result);
     }
 }
