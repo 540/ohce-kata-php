@@ -30,7 +30,7 @@ class OhceTest extends TestCase
     /**
      * @test
      */
-    public function checksIsNotPalindromeIfWordIsHola()
+    public function checksIsNotPalindrome()
     {
         $ohce = new Ohce();
 
@@ -42,7 +42,7 @@ class OhceTest extends TestCase
     /**
      * @test
      */
-    public function checksIsPalindromeIfWordIsSomos()
+    public function checksIsPalindrome()
     {
         $ohce = new Ohce();
 
