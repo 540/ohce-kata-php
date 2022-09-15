@@ -20,7 +20,7 @@ class OhceTest extends TestCase
      */
     public function returnsReverseWordIfIsNotPalindrome()
     {
-        $ohce = new Ohce();
+        $ohce = new Ohce('Meetup');
 
         $result = $ohce->inputHandler('word');
 
@@ -32,10 +32,22 @@ class OhceTest extends TestCase
      */
     public function returnsSpecialAnswerIfIsPalindrome()
     {
-        $ohce = new Ohce();
+        $ohce = new Ohce('Meetup');
 
         $result = $ohce->inputHandler('somos');
 
         $this->assertEquals('somos ¡Bonita palabra!', $result);
+    }
+    
+    /**
+     * @test
+     */
+    public function returnsByeIfWordIsExitWord()
+    {
+        $ohce = new Ohce('Meetup');
+
+        $result = $ohce->inputHandler('Stop!');
+
+        $this->assertEquals('Adios Meetup', $result);
     }
 }
